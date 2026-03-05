@@ -62,7 +62,8 @@ def get_settings() -> Settings:
     postgres_db = os.getenv("POSTGRES_DB", "")
     postgres_port = os.getenv("POSTGRES_PORT", "")
 
-    # The DB container exposes localhost:5000 in db_connection.txt. Keep host overrideable.
+    # Default to the DB container's in-repo connection hint (db_connection.txt uses localhost:5000).
+    # Keep host/port overrideable via env for other environments.
     postgres_host = os.getenv("POSTGRES_HOST", "localhost")
 
     return Settings(
